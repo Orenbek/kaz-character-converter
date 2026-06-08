@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>Kazakh Studio · Cyrillic ↔ Arabic</title>
+    <title>Kazakh Studio · Cyrillic ↔ Töte</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -45,13 +45,13 @@
             </svg>
           </div>
           <div class="brand-text">
-            <span class="brand-name">Kazakh Studio</span>
-            <span class="brand-sub">Cyrillic · Arabic</span>
+            <span class="brand-name">Qazaq Studio</span>
+            <span class="brand-sub" dir="rtl">كيريلليتسا · توتە</span>
           </div>
         </div>
 
         <nav class="nav" aria-label="Tools">
-          <p class="nav-label">Tools</p>
+          <p class="nav-label" dir="rtl">قۇرالدار</p>
           <a
             class="nav-item is-active"
             href="#converter"
@@ -64,8 +64,8 @@
               </svg>
             </span>
             <span class="nav-text">
-              <span class="nav-title">Converter</span>
-              <span class="nav-desc">Cyrillic → Arabic</span>
+              <span class="nav-title" dir="rtl">تۇرلەندىرگىش</span>
+              <span class="nav-desc" dir="rtl">كيريلليتسا ← توتە</span>
             </span>
           </a>
           <a class="nav-item" href="#input" data-view="inputView">
@@ -76,8 +76,8 @@
               </svg>
             </span>
             <span class="nav-text">
-              <span class="nav-title">Arabic Input</span>
-              <span class="nav-desc">QWERTY → قازاقشا</span>
+              <span class="nav-title" dir="rtl">توتە ەنگىزۋ</span>
+              <span class="nav-desc" dir="rtl">QWERTY ← قازاقشا</span>
             </span>
           </a>
         </nav>
@@ -101,10 +101,10 @@
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
             </span>
-            <span class="theme-toggle-text">Theme</span>
+            <span class="theme-toggle-text" dir="rtl">تاقىرىپ</span>
           </button>
-          <p class="sidebar-tip">
-            Switch tools any time. Your text is processed locally — never uploaded.
+          <p class="sidebar-tip" dir="rtl">
+            ءسىزدىڭ ءماتىڭىز جەرگىلىكتى وڭدەلەدى — ەشقاشان جۇكتەپ جىبەرىلمەيدى.
           </p>
         </div>
       </aside>
@@ -122,9 +122,8 @@
               <span class="title-arrow" aria-hidden="true">→</span>
               <span class="title-accent" dir="rtl">توتە جازۋ</span>
             </h1>
-            <p class="view-subtitle">
-              Type or paste Cyrillic Kazakh on the left, get the Arabic-script
-              version instantly on the right.
+            <p class="view-subtitle" dir="rtl">
+              سول جاقتاعى كيريلليتسا قازاق ءماتىنىن جازىڭىز نەمەسە قويىڭىز — وڭ جاقتا دەرەۋ توتە جازۋدا كورىنەدى.
             </p>
           </header>
 
@@ -175,7 +174,7 @@
 
               <label class="panel panel--output">
                 <div class="panel-head">
-                  <span class="panel-title" id="resultLabel">Output · Arabic</span>
+                  <span class="panel-title" id="resultLabel">Output · Töte</span>
                   <span class="panel-meta" id="resultMeta">0 chars</span>
                 </div>
                 <textarea
@@ -190,30 +189,29 @@
 
             <div class="status">
               <span id="characterCount" class="status-info">0 characters</span>
-              <span class="status-hint">Tip: paste long passages — conversion is instant.</span>
+              <span class="status-hint" dir="rtl">كەڭەس: ۇزىن ءماتىندى دە قويا الاسىز — تۇرلەندىرۋ دەرەۋ جاسالادى.</span>
             </div>
           </div>
         </section>
 
-        <!-- Arabic Input View -->
+        <!-- Töte Input View -->
         <section id="inputView" class="tool-view">
           <header class="view-header">
             <div class="view-eyebrow">
               <span class="dot"></span>
-              <span>Type Arabic-script Kazakh</span>
+              <span>Type Töte-script Kazakh</span>
             </div>
             <h1 class="view-title">
               <span class="title-accent">QWERTY</span>
               <span class="title-arrow" aria-hidden="true">→</span>
               <span class="title-accent" dir="rtl">قازاقشا كىرىستىرۋ</span>
             </h1>
-            <p class="view-subtitle">
-              Type with your normal keyboard — each key produces the right
-              Arabic-script character. Click any key below to insert directly.
+            <p class="view-subtitle" dir="rtl">
+              ادەتتەگى پەرنەتاقتاڭىزبەن جازىڭىز — ءار پەرنە دۇرىس توتە ءارپىن بەرەدى. تومەندەگى پەرنەنى باسىپ تا ماتىنگە قوسا الاسىز.
             </p>
           </header>
 
-          <div class="tool-card" aria-label="Kazakh Arabic input">
+          <div class="tool-card" aria-label="Kazakh Töte input">
             <div class="toolbar">
               <div class="mode-pill" aria-label="Keyboard mode">
                 <span class="mode-chip">QWERTY</span>
@@ -253,7 +251,7 @@
               <div class="keyboard-head">
                 <div>
                   <p class="keyboard-title">Keyboard Map</p>
-                  <p class="keyboard-sub">Click a key to insert it · Hold Shift for the upper layer</p>
+                  <p class="keyboard-sub" dir="rtl">پەرنەنى باسىپ قوسىڭىز · جوعارعى دەڭگەيگە اۋىسۋ ءۇشىن Shift ۇستاڭىز</p>
                 </div>
                 <div class="keyboard-legend" aria-label="Keyboard map legend">
                   <span class="legend-item"><i class="legend-dot legend-dot--shift"></i>Shift layer</span>
@@ -265,7 +263,7 @@
 
             <div class="status">
               <span id="arabicCount" class="status-info">0 characters</span>
-              <span class="status-hint">Tip: keys map to a single Latin character — try typing a full word.</span>
+              <span class="status-hint" dir="rtl">كەڭەس: ءار پەرنە ءبىر لاتىن ارپىنە سايكەس — تولىق ءسوزدى تەرىپ كورىڭىز.</span>
             </div>
           </div>
         </section>
