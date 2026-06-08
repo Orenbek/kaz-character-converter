@@ -2,6 +2,8 @@
 
 A small static page for Kazakh Arabic-script tools.
 
+Live page: https://kaz-character-converter.pages.dev/#converter
+
 - Kazakh Character Converter: converts Kazakh Cyrillic text to Arabic-script
   Kazakh.
 - 哈萨克输入: types Kazakh Arabic characters from a QWERTY keyboard and shows the
