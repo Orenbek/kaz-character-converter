@@ -1,133 +1,278 @@
 <!doctype html>
-<html lang="kk">
+<html lang="kk" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kazakh Character Converter</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>Kazakh Studio · Cyrillic ↔ Arabic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="ambient" aria-hidden="true">
+      <span class="orb orb--a"></span>
+      <span class="orb orb--b"></span>
+      <span class="orb orb--c"></span>
+    </div>
+
     <main class="app-shell">
-      <div class="app-frame">
-        <aside class="side-nav" aria-label="Tools">
-          <button
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="22" height="22" fill="none">
+              <path
+                d="M6 5h5l5 8 5-8h5L18 17v10h-4V17L6 5z"
+                fill="url(#brandGrad)"
+              />
+              <defs>
+                <linearGradient
+                  id="brandGrad"
+                  x1="6"
+                  y1="5"
+                  x2="26"
+                  y2="27"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#34d399" />
+                  <stop offset="1" stop-color="#0ea5e9" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Kazakh Studio</span>
+            <span class="brand-sub">Cyrillic · Arabic</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Tools">
+          <p class="nav-label">Tools</p>
+          <a
             class="nav-item is-active"
-            type="button"
+            href="#converter"
             data-view="converterView"
           >
-            Kazakh Character Converter
+            <span class="nav-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 7h11M4 7l3-3M4 7l3 3" />
+                <path d="M20 17H9m11 0l-3-3m3 3l-3 3" />
+              </svg>
+            </span>
+            <span class="nav-text">
+              <span class="nav-title">Converter</span>
+              <span class="nav-desc">Cyrillic → Arabic</span>
+            </span>
+          </a>
+          <a class="nav-item" href="#input" data-view="inputView">
+            <span class="nav-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="13" rx="2.5" />
+                <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M10 14h.01M14 14h.01M18 14h.01M8 17h8" />
+              </svg>
+            </span>
+            <span class="nav-text">
+              <span class="nav-title">Arabic Input</span>
+              <span class="nav-desc">QWERTY → قازاقشا</span>
+            </span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            <span class="theme-toggle-icon theme-toggle-icon--sun" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            </span>
+            <span class="theme-toggle-icon theme-toggle-icon--moon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </span>
+            <span class="theme-toggle-text">Theme</span>
           </button>
-          <button class="nav-item" type="button" data-view="inputView">
-            哈萨克输入
-          </button>
-        </aside>
+          <p class="sidebar-tip">
+            Switch tools any time. Your text is processed locally — never uploaded.
+          </p>
+        </div>
+      </aside>
 
-        <section class="workspace" aria-labelledby="page-title">
-          <section id="converterView" class="tool-view is-active">
-            <div class="intro">
-              <p class="eyebrow">Kazakh Cyrillic to Arabic</p>
-              <h1 id="page-title">Kazakh Character Converter</h1>
+      <section class="workspace" aria-labelledby="page-title">
+        <!-- Converter View -->
+        <section id="converterView" class="tool-view is-active">
+          <header class="view-header">
+            <div class="view-eyebrow">
+              <span class="dot"></span>
+              <span>Live transliteration</span>
+            </div>
+            <h1 id="page-title" class="view-title">
+              Kazakh <span class="title-accent">Cyrillic</span>
+              <span class="title-arrow" aria-hidden="true">→</span>
+              <span class="title-accent" dir="rtl">توتە جازۋ</span>
+            </h1>
+            <p class="view-subtitle">
+              Type or paste Cyrillic Kazakh on the left, get the Arabic-script
+              version instantly on the right.
+            </p>
+          </header>
+
+          <div class="tool-card" aria-label="Kazakh converter">
+            <div class="toolbar">
+              <div class="mode-pill" aria-label="Conversion mode">
+                <span class="mode-chip" id="modeChipFrom">Қазақ кирилл</span>
+                <button
+                  id="swapButton"
+                  type="button"
+                  class="mode-swap"
+                  title="Swap direction"
+                  aria-label="Swap direction"
+                >
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 16V4M3 8l4-4 4 4"/><path d="M17 8v12M21 16l-4 4-4-4"/></svg>
+                </button>
+                <span class="mode-chip" id="modeChipTo" dir="rtl">توتە جازۋ</span>
+              </div>
+              <div class="actions">
+                <button id="sampleButton" type="button" class="btn btn-ghost">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z"/></svg>
+                  <span>Sample</span>
+                </button>
+                <button id="clearButton" type="button" class="btn btn-ghost">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                  <span>Clear</span>
+                </button>
+                <button id="copyButton" class="btn btn-primary" type="button">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span>Copy result</span>
+                </button>
+              </div>
             </div>
 
-            <div class="tool-card" aria-label="Kazakh converter">
-              <div class="toolbar">
-                <div class="mode-pill" aria-label="Conversion mode">
-                  <span>Қазақ кирилл</span>
-                  <span aria-hidden="true">→</span>
-                  <span dir="rtl">توتە جازۋ</span>
+            <div class="panels">
+              <label class="panel">
+                <div class="panel-head">
+                  <span class="panel-title" id="sourceLabel">Input · Cyrillic</span>
+                  <span class="panel-meta" id="sourceMeta">0 chars · 0 words</span>
                 </div>
-                <div class="actions">
-                  <button id="sampleButton" type="button">Sample</button>
-                  <button id="clearButton" type="button">Clear</button>
-                  <button id="copyButton" class="primary-action" type="button">
-                    Copy
-                  </button>
-                </div>
-              </div>
-
-              <div class="panels">
-                <label class="panel">
-                  <span class="panel-title">Input</span>
-                  <textarea
-                    id="sourceText"
-                    spellcheck="false"
-                    autocomplete="off"
-                    placeholder="жазуларды"
-                  ></textarea>
-                </label>
-
-                <label class="panel">
-                  <span class="panel-title">Output</span>
-                  <textarea
-                    id="resultText"
-                    dir="rtl"
-                    spellcheck="false"
-                    readonly
-                  ></textarea>
-                </label>
-              </div>
-
-              <div class="status">
-                <span id="characterCount">0 characters</span>
-                <span id="copyStatus" role="status" aria-live="polite"></span>
-              </div>
-            </div>
-          </section>
-
-          <section id="inputView" class="tool-view">
-            <div class="intro">
-              <p class="eyebrow">Arabic-script Kazakh</p>
-              <h1>哈萨克输入</h1>
-            </div>
-
-            <div class="tool-card" aria-label="Kazakh Arabic input">
-              <div class="toolbar">
-                <div class="mode-pill" aria-label="Keyboard mode">
-                  <span>QWERTY</span>
-                  <span aria-hidden="true">→</span>
-                  <span dir="rtl">قازاقشا</span>
-                </div>
-                <div class="actions">
-                  <button id="clearArabicButton" type="button">Clear</button>
-                  <button
-                    id="copyArabicButton"
-                    class="primary-action"
-                    type="button"
-                  >
-                    Copy
-                  </button>
-                </div>
-              </div>
-
-              <label class="input-panel">
-                <span class="panel-title">Arabic Input</span>
                 <textarea
-                  id="arabicInput"
-                  class="arabic-input"
-                  dir="rtl"
+                  id="sourceText"
                   spellcheck="false"
                   autocomplete="off"
+                  placeholder="Сәлем әлем — мұнда жазыңыз..."
                 ></textarea>
               </label>
 
-              <div class="keyboard-wrap">
-                <div class="keyboard-title">Keyboard Map</div>
-                <div class="keyboard-legend" aria-label="Keyboard map legend">
-                  <span>Top: Shift</span>
-                  <span>Bottom: key</span>
+              <label class="panel panel--output">
+                <div class="panel-head">
+                  <span class="panel-title" id="resultLabel">Output · Arabic</span>
+                  <span class="panel-meta" id="resultMeta">0 chars</span>
                 </div>
-                <div id="keyboardMap" class="keyboard-map"></div>
-              </div>
+                <textarea
+                  id="resultText"
+                  dir="rtl"
+                  spellcheck="false"
+                  readonly
+                  placeholder="ءنەتيجە مۇندا كورىنەدى"
+                ></textarea>
+              </label>
+            </div>
 
-              <div class="status">
-                <span id="arabicCount">0 characters</span>
-                <span id="arabicCopyStatus" role="status" aria-live="polite"></span>
+            <div class="status">
+              <span id="characterCount" class="status-info">0 characters</span>
+              <span class="status-hint">Tip: paste long passages — conversion is instant.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Arabic Input View -->
+        <section id="inputView" class="tool-view">
+          <header class="view-header">
+            <div class="view-eyebrow">
+              <span class="dot"></span>
+              <span>Type Arabic-script Kazakh</span>
+            </div>
+            <h1 class="view-title">
+              <span class="title-accent">QWERTY</span>
+              <span class="title-arrow" aria-hidden="true">→</span>
+              <span class="title-accent" dir="rtl">قازاقشا كىرىستىرۋ</span>
+            </h1>
+            <p class="view-subtitle">
+              Type with your normal keyboard — each key produces the right
+              Arabic-script character. Click any key below to insert directly.
+            </p>
+          </header>
+
+          <div class="tool-card" aria-label="Kazakh Arabic input">
+            <div class="toolbar">
+              <div class="mode-pill" aria-label="Keyboard mode">
+                <span class="mode-chip">QWERTY</span>
+                <span class="mode-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+                <span class="mode-chip" dir="rtl">قازاقشا</span>
+              </div>
+              <div class="actions">
+                <button id="clearArabicButton" type="button" class="btn btn-ghost">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                  <span>Clear</span>
+                </button>
+                <button id="copyArabicButton" class="btn btn-primary" type="button">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span>Copy</span>
+                </button>
               </div>
             </div>
-          </section>
+
+            <label class="input-panel">
+              <div class="panel-head">
+                <span class="panel-title">Composer</span>
+                <span class="panel-meta" id="arabicMeta">0 chars</span>
+              </div>
+              <textarea
+                id="arabicInput"
+                class="arabic-input"
+                dir="rtl"
+                spellcheck="false"
+                autocomplete="off"
+                placeholder="مۇندا جازىڭىز..."
+              ></textarea>
+            </label>
+
+            <div class="keyboard-wrap">
+              <div class="keyboard-head">
+                <div>
+                  <p class="keyboard-title">Keyboard Map</p>
+                  <p class="keyboard-sub">Click a key to insert it · Hold Shift for the upper layer</p>
+                </div>
+                <div class="keyboard-legend" aria-label="Keyboard map legend">
+                  <span class="legend-item"><i class="legend-dot legend-dot--shift"></i>Shift layer</span>
+                  <span class="legend-item"><i class="legend-dot"></i>Base layer</span>
+                </div>
+              </div>
+              <div id="keyboardMap" class="keyboard-map"></div>
+            </div>
+
+            <div class="status">
+              <span id="arabicCount" class="status-info">0 characters</span>
+              <span class="status-hint">Tip: keys map to a single Latin character — try typing a full word.</span>
+            </div>
+          </div>
         </section>
-      </div>
+      </section>
     </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script src="converter.js"></script>
     <script src="app.js"></script>

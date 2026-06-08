@@ -87,8 +87,86 @@
       );
   }
 
+  // Reverse mapping: Arabic-script Kazakh -> Cyrillic.
+  // If a word is preceded by ء (hamza), the soft (front) vowel variants
+  // are used for ambiguous letters; otherwise the back variants.
+  const ARABIC_TO_CYR_HARD = {
+    "ا": "а",
+    "ب": "б",
+    "پ": "п",
+    "ت": "т",
+    "ج": "ж",
+    "چ": "ч",
+    "ح": "х",
+    "د": "д",
+    "ر": "р",
+    "ز": "з",
+    "س": "с",
+    "ش": "ш",
+    "ع": "ғ",
+    "ف": "ф",
+    "ق": "қ",
+    "ك": "к",
+    "گ": "г",
+    "ل": "л",
+    "م": "м",
+    "ن": "н",
+    "ڭ": "ң",
+    "و": "о",
+    "ۆ": "в",
+    "ۇ": "ұ",
+    "ۋ": "у",
+    "ي": "и",
+    "ى": "ы",
+    "ھ": "һ",
+    "ٶ": "ө",
+    "ٷ": "ү",
+    "ٵ": "ә",
+  };
+  const ARABIC_TO_CYR_SOFT = {
+    ...ARABIC_TO_CYR_HARD,
+    "ا": "ә",
+    "و": "ө",
+    "ۇ": "ү",
+    "ى": "і",
+  };
+  const REVERSE_PUNCTUATION = {
+    "،": ",",
+    "؛": ";",
+    "؟": "?",
+  };
+  const ARABIC_WORD =
+    /[\u0621-\u064A\u067E\u06AD\u06AF\u06C7\u06CB\u06D5\u0674\u0676\u0675]+/g;
+
+  function convertArabicWord(word) {
+    let soft = false;
+    let stripped = word;
+    if (stripped.startsWith(HAMZA)) {
+      soft = true;
+      stripped = stripped.slice(1);
+    }
+    // If word contains explicit soft-vowel hamza-marked letters, treat as soft.
+    if (/[\u0674\u0675\u0676\u06CB]/.test(stripped) || /ٵ|ٶ|ٷ/.test(stripped)) {
+      soft = true;
+    }
+    const table = soft ? ARABIC_TO_CYR_SOFT : ARABIC_TO_CYR_HARD;
+    let out = "";
+    for (const ch of stripped) {
+      out += table[ch] !== undefined ? table[ch] : ch;
+    }
+    // Capitalize if the original word looked initial (we don't track case for Arabic);
+    return out;
+  }
+
+  function arabicToKazakhCyrillic(text) {
+    return text
+      .replace(ARABIC_WORD, convertArabicWord)
+      .replace(/[،؛؟]/g, (mark) => REVERSE_PUNCTUATION[mark] || mark);
+  }
+
   const api = {
     kazakhCyrillicToArabic,
+    arabicToKazakhCyrillic,
     convertWord,
   };
 
