@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kazakh Character Converter</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="app-frame">
+        <aside class="side-nav" aria-label="Tools">
+          <button
+            class="nav-item is-active"
+            type="button"
+            data-view="converterView"
+          >
+            Kazakh Character Converter
+          </button>
+          <button class="nav-item" type="button" data-view="inputView">
+            哈萨克输入
+          </button>
+        </aside>
+
+        <section class="workspace" aria-labelledby="page-title">
+          <section id="converterView" class="tool-view is-active">
+            <div class="intro">
+              <p class="eyebrow">Kazakh Cyrillic to Arabic</p>
+              <h1 id="page-title">Kazakh Character Converter</h1>
+            </div>
+
+            <div class="tool-card" aria-label="Kazakh converter">
+              <div class="toolbar">
+                <div class="mode-pill" aria-label="Conversion mode">
+                  <span>Қазақ кирилл</span>
+                  <span aria-hidden="true">→</span>
+                  <span dir="rtl">توتە جازۋ</span>
+                </div>
+                <div class="actions">
+                  <button id="sampleButton" type="button">Sample</button>
+                  <button id="clearButton" type="button">Clear</button>
+                  <button id="copyButton" class="primary-action" type="button">
+                    Copy
+                  </button>
+                </div>
+              </div>
+
+              <div class="panels">
+                <label class="panel">
+                  <span class="panel-title">Input</span>
+                  <textarea
+                    id="sourceText"
+                    spellcheck="false"
+                    autocomplete="off"
+                    placeholder="жазуларды"
+                  ></textarea>
+                </label>
+
+                <label class="panel">
+                  <span class="panel-title">Output</span>
+                  <textarea
+                    id="resultText"
+                    dir="rtl"
+                    spellcheck="false"
+                    readonly
+                  ></textarea>
+                </label>
+              </div>
+
+              <div class="status">
+                <span id="characterCount">0 characters</span>
+                <span id="copyStatus" role="status" aria-live="polite"></span>
+              </div>
+            </div>
+          </section>
+
+          <section id="inputView" class="tool-view">
+            <div class="intro">
+              <p class="eyebrow">Arabic-script Kazakh</p>
+              <h1>哈萨克输入</h1>
+            </div>
+
+            <div class="tool-card" aria-label="Kazakh Arabic input">
+              <div class="toolbar">
+                <div class="mode-pill" aria-label="Keyboard mode">
+                  <span>QWERTY</span>
+                  <span aria-hidden="true">→</span>
+                  <span dir="rtl">قازاقشا</span>
+                </div>
+                <div class="actions">
+                  <button id="clearArabicButton" type="button">Clear</button>
+                  <button
+                    id="copyArabicButton"
+                    class="primary-action"
+                    type="button"
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+
+              <label class="input-panel">
+                <span class="panel-title">Arabic Input</span>
+                <textarea
+                  id="arabicInput"
+                  class="arabic-input"
+                  dir="rtl"
+                  spellcheck="false"
+                  autocomplete="off"
+                ></textarea>
+              </label>
+
+              <div class="keyboard-wrap">
+                <div class="keyboard-title">Keyboard Map</div>
+                <div class="keyboard-legend" aria-label="Keyboard map legend">
+                  <span>Top: Shift</span>
+                  <span>Bottom: key</span>
+                </div>
+                <div id="keyboardMap" class="keyboard-map"></div>
+              </div>
+
+              <div class="status">
+                <span id="arabicCount">0 characters</span>
+                <span id="arabicCopyStatus" role="status" aria-live="polite"></span>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <script src="converter.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
